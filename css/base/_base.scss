@@ -1,0 +1,22 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%; //permet de calculer en base 10px
+    box-sizing: border-box;
+}
+
+body {
+    background: $white;
+    color: $black;
+} 
+
+a {
+    text-decoration: none;
+    color: $black;
+}

@@ -1,0 +1,584 @@
+.buttons-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.btn-bubble {
+    color: #af9483;
+    background-color: #fec3ac;
+    font-size: $ftsize-h3;
+    border: 0.3rem solid #af9483;
+    border-radius: 0.5rem;
+    width: 20rem;
+    height: 5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: sans-serif;
+    letter-spacing: 0.1rem;
+    text-align: center;
+    line-height: 4.4rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: 500ms;
+    margin: 1rem;
+
+    &:hover {
+        color: #fec3ac;
+        cursor: pointer;
+
+        .bubble {
+            transform: translateY(0) scale(2);
+        }
+    }
+}
+
+.bubble {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: #af9483;
+    margin: 0;
+    transform: translateY(150%);
+    border-radius: 50%;
+    left: calc((var(--n) - 1) * 25%);
+    transition: 500ms;
+    transition-delay: calc((var(--n) - 1) * 0.1s);
+    z-index: -1;
+
+    &:nth-child(1) {
+        --n: 1;
+    }
+
+    &:nth-child(2) {
+        --n: 2;
+    }
+
+    &:nth-child(3) {
+        --n: 3;
+    }
+
+    &:nth-child(4) {
+        --n: 4;
+    }
+}
+
+@mixin btn__split($colorLeft, $colorRight, $textColor) {
+    .btn-split {
+        position: relative;
+        letter-spacing: 0.25em;
+        margin: 1rem;
+        padding: 1rem 2.5rem;
+        background: transparent;
+        outline: none;
+        font-size: $ftsize-h3;
+        color: $textColor;
+        width: 20rem;
+        height: 5rem;
+        line-height: 5rem;
+
+        &::after,
+        &::before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            transform: skewX(30deg);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: -2;
+        }
+
+        &::before {
+            background-color: $colorLeft;
+            top: -1rem;
+            left: 0rem;
+        }
+
+        &::after {
+            background-color: $colorRight;
+            top: 1rem;
+            left: 10rem;
+        }
+
+        &:hover {
+
+            &::before,
+            &::after {
+                top: 0;
+                transform: skewx(0deg);
+            }
+
+            &::after {
+                left: 0rem;
+            }
+
+            &::before {
+                left: 10rem;
+            }
+        }
+    }
+}
+
+@include btn__split(#af9483, #fec3ac, black);
+
+.container-split {
+    /*width: 40rem;
+    height: 5rem;
+    line-height: 5rem;*/
+    margin: 1rem;
+
+    a {
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+}
+
+.btn-fancy {
+
+    --offset: 10px;
+    --border-size: 2px;
+
+    display: block;
+    width: 26rem;
+    height: 5rem;
+    line-height: 0.5rem;
+    position: relative;
+    padding: 1.5em 3em;
+    margin: 1rem;
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: #af9483;
+    text-transform: uppercase;
+    letter-spacing: .25em;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 0;
+    box-shadow: inset 0 0 0 var(--border-size) currentcolor;
+    transition: background .8s ease;
+
+    &:hover {
+        background: rgba(254, 195, 172, 0.3);
+    }
+
+    &__horizontal,
+    &__vertical {
+        position: absolute;
+        top: var(--horizontal-offset, 0);
+        right: var(--vertical-offset, 0);
+        bottom: var(--horizontal-offset, 0);
+        left: var(--vertical-offset, 0);
+        transition: transform .8s ease;
+        will-change: transform;
+
+        &::before {
+            content: '';
+            position: absolute;
+            border: inherit;
+        }
+    }
+
+    &__horizontal {
+        --vertical-offset: calc(var(--offset) * -1);
+        border-top: var(--border-size) solid currentcolor;
+        border-bottom: var(--border-size) solid currentcolor;
+
+        &::before {
+            top: calc(var(--vertical-offset) - var(--border-size));
+            bottom: calc(var(--vertical-offset) - var(--border-size));
+            left: calc(var(--vertical-offset) * -1);
+            right: calc(var(--vertical-offset) * -1);
+        }
+    }
+
+    &:hover &__horizontal {
+        transform: scaleX(0);
+    }
+
+    &__vertical {
+        --horizontal-offset: calc(var(--offset) * -1);
+        border-left: var(--border-size) solid currentcolor;
+        border-right: var(--border-size) solid currentcolor;
+
+        &::before {
+            top: calc(var(--horizontal-offset) * -1);
+            bottom: calc(var(--horizontal-offset) * -1);
+            left: calc(var(--horizontal-offset) - var(--border-size));
+            right: calc(var(--horizontal-offset) - var(--border-size));
+        }
+    }
+
+    &:hover &__vertical {
+        transform: scaleY(0);
+    }
+
+}
+
+@mixin btn-border-drawing($color: #ccc, $hover: black, $width: 2px, $vertical: top, $horizontal: left, $duration: 0.25s) {
+    box-shadow: inset 0 0 0 $width $color;
+    color: $color;
+    transition: color $duration $duration/3;
+    position: relative;
+
+    &::before,
+    &::after {
+        border: 0 solid transparent;
+        box-sizing: border-box;
+        content: '';
+        pointer-events: none;
+        position: absolute;
+        width: 0;
+        height: 0;
+
+        #{$vertical}: 0;
+        #{$horizontal}: 0;
+    }
+
+    &::before {
+        $h-side: if($horizontal =='left', 'right', 'left');
+
+        border-#{$vertical}-width: $width;
+        border-#{$h-side}-width: $width;
+    }
+
+    &::after {
+        $v-side: if($vertical =='top', 'bottom', 'top');
+
+        border-#{$v-side}-width: $width;
+        border-#{$horizontal}-width: $width;
+    }
+
+    &:hover {
+        color: $hover;
+
+        &::before,
+        &::after {
+            border-color: $hover;
+            transition: border-color 0s, width $duration, height $duration;
+            width: 100%;
+            height: 100%;
+        }
+
+        &::before {
+            transition-delay: 0s, 0s, $duration;
+        }
+
+        &::after {
+            transition-delay: 0s, $duration, 0s;
+        }
+    }
+}
+
+.draw-border {
+    @include btn-border-drawing(#af9483, #fec3ac, 4px, bottom, right);
+}
+
+//=== Button styling, semi-ignore
+.btn-drawborder {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: $ftsize-h3;
+    padding: 1em 2em;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    width: 20rem;
+    height: 5rem;
+    margin: 1rem;
+    line-height: 2rem;
+    text-align: center;
+
+    &:focus {
+        outline: 2px dotted #fec3ac;
+    }
+}
+
+/*$color: black;
+$body-color: #ecf0f1;*/
+$color1: #af9483;
+$color2: #af9483;
+$color3: #af9483;
+$color4: #af9483;
+
+.btn-lines {
+    position: relative;
+    padding: 1em 1.5em;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    font-size: $ftsize-h3;
+    margin: 1rem
+        /*1em 0.8em*/
+    ;
+    width: 20rem;
+    height: 5rem;
+    text-align: center;
+    text-transform: uppercase;
+
+    &.type1 {
+        color: $color1;
+
+        // Effect one
+        &.type1::after,
+        &.type1::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 20%;
+            height: 20%;
+            border: 2px solid;
+            transition: all 0.6s ease;
+            border-radius: 2px
+        }
+
+        &.type1::after {
+            bottom: 0;
+            right: 0;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            border-bottom-color: $color1;
+            border-right-color: $color1;
+        }
+
+        &.type1::before {
+            top: 0;
+            left: 0;
+            border-bottom-color: transparent;
+            border-right-color: transparent;
+            border-top-color: $color1;
+            border-left-color: $color1;
+        }
+
+        &.type1:hover:after,
+        &.type1:hover:before {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+
+    &.type2 {
+        color: $color2;
+
+        // Effect 2
+        // Inspiration https://tympanus.net/Development/CreativeLinkEffects/
+        &.type2:after,
+        &.type2:before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: $color2;
+            transition: all 0.3s ease;
+            transform: scale(0.85);
+        }
+
+        &.type2:hover:before {
+            top: 0;
+            transform: scale(1);
+        }
+
+        &.type2:hover:after {
+            transform: scale(1);
+        }
+    }
+
+    &.type3 {
+        color: $color3;
+
+        //Effect three
+        // Effect one
+        &.type3::after,
+        &.type3::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 20%;
+            height: 20%;
+            border: 2px solid;
+            transition: all 0.6s ease;
+            border-radius: 2px;
+        }
+
+        &.type3::after {
+            bottom: 0;
+            right: 0;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            border-bottom-color: $color3;
+            border-right-color: $color3;
+        }
+
+        &.type3::before {
+            top: 0;
+            left: 0;
+            border-bottom-color: transparent;
+            border-right-color: transparent;
+            border-top-color: $color3;
+            border-left-color: $color3;
+        }
+
+        &.type3:hover:after,
+        &.type3:hover:before {
+            border-bottom-color: $color3;
+            border-right-color: $color3;
+            border-top-color: $color3;
+            border-left-color: $color3;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &.type4 {
+        color: $color4;
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 0;
+            left: 0;
+            background-color: #af9483;
+            transition: width 0.3s ease-in-out;
+        }
+
+        &::after {
+            bottom: 0;
+        }
+
+        &:hover::after {
+            width: 50px;
+        }
+    }
+}
+
+.btn-cubic {
+    color: #af9483;
+    cursor: pointer;
+    // display: block;
+    font-size: $ftsize-h3;
+    line-height: 45px;
+    margin: 1rem;
+    width: 20rem;
+    height: 5rem;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+}
+
+.btn-c1 {
+    letter-spacing: 0;
+}
+
+.btn-c1:hover,
+.btn-c1:active {
+    letter-spacing: 5px;
+}
+
+.btn-c1:after,
+.btn-c1:before {
+    backface-visibility: hidden;
+    border: 1px solid rgba(#af9483, 0);
+    bottom: 0px;
+    content: " ";
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    transition: all 280ms ease-in-out;
+    width: 0;
+}
+
+.btn-c1:hover:after,
+.btn-c1:hover:before {
+    backface-visibility: hidden;
+    border-color: #af9483;
+    transition: width 350ms ease-in-out;
+    width: 70%;
+}
+
+.btn-c1:hover:before {
+    bottom: auto;
+    top: 0;
+    width: 70%;
+}
+
+.btn-c2 {
+    background: lighten(#fec3ac, 3%);  
+    border: 1px solid darken(#fec3ac, 4%);
+    box-shadow: 0px 2px 0 darken(#fec3ac, 5%), 2px 4px 6px darken(#fec3ac, 2%);
+    font-weight: 900;
+    letter-spacing: 1px;
+    transition: all 150ms linear;
+  }
+  
+  .btn-c2:hover {
+    background: darken(#fec3ac, 1.5%);
+    border: 1px solid rgba(#000, .05);
+    box-shadow: 1px 1px 2px rgba(darkgray, .2);
+    color: lighten(#fec3ac, 18%); 
+    text-decoration: none;
+    text-shadow: -1px -1px 0 darken(#fec3ac, 9.5%);
+    transition: all 250ms linear;
+  }
+
+  .btn-c3 {
+    border: 1px solid;
+    overflow: hidden;
+    position: relative;
+    
+    span {
+      z-index: 20;
+    }
+    
+    &:after {
+      background: #fec3ac;
+      content: "";
+      height: 155px;
+      left: -75px;
+      opacity: .2;
+      position: absolute;
+      top: -50px;
+      transform: rotate(35deg);
+      transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+      width: 50px;
+      z-index: -10;
+    }
+  }
+  
+  .btn-c3:hover {
+    
+    &:after {
+      left: 120%;
+      transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+    }
+  }
+
+  .btn-c4 {
+    border: 0 solid;
+    box-shadow: inset 0 0 20px rgba(#af9483, 0);
+    outline: 1px solid;
+    outline-color: rgba(#af9483, .5);
+    outline-offset: 0px;
+    text-shadow: none;
+    transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+  } 
+  
+  .btn-c4:hover {
+    border: 1px solid;
+    box-shadow: inset 0 0 20px rgba(#af9483, .5), 0 0 20px rgba(#af9483, .2);
+    outline-color: rgba(#af9483, 0);
+    outline-offset: 15px;
+    text-shadow: 1px 1px 2px #fec3ac; 
+  }

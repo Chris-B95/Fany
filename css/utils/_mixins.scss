@@ -1,0 +1,71 @@
+@mixin logo-font {
+    font-family: 'Shrikhand', cursive;
+}
+
+@mixin logo-font2 {
+    font-family: 'Quicksand', sans-serif;
+}
+
+@mixin logo-font3 {
+    font-family: 'Playfair Display', serif;
+}
+
+@mixin logo-font4 {
+    font-family: 'Pacifico', cursive;
+}
+
+@mixin logo-font5 {
+    font-family: 'Dela Gothic One', cursive;
+}
+
+@mixin logo-font6 {
+    font-family: 'Abril Fatface', cursive;
+}
+
+@mixin txt-font {
+    font-family: 'BioRhyme', serif;
+}
+@mixin txt-font2 {
+    font-family: 'Cormorant', serif;
+}
+@mixin txt-font3 {
+    font-family: 'Encode Sans', sans-serif;
+}
+@mixin txt-font4 {
+    font-family: 'Hahmlet', serif;
+}
+@mixin txt-font5 {
+    font-family: 'JetBrains Mono', monospace;
+}
+@mixin txt-font6 {
+    font-family: 'Old Standard TT', serif;
+}
+@mixin txt-font7 {
+    font-family: 'Open Sans', sans-serif;
+}
+@mixin txt-font8 {
+    font-family: 'Oxygen', sans-serif;
+}
+@mixin txt-font9 {
+    font-family: 'Roboto', sans-serif;
+}
+@mixin txt-font10 {
+    font-family: 'Spectral', serif;
+}
+
+
+@mixin basic-shadow($offx: 0, $offy: 4px, $blur: 8px, $extend: 0, $rgba: rgba(0, 0, 0, 0.2)) {
+    box-shadow: $offx $offy $blur $extend $rgba;
+}
+
+@mixin tablet {
+    @media screen and (min-width: $tablet-width) and (max-width: ($desktop-width - 1px)) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-width: $desktop-width) {
+        @content;
+    }
+}

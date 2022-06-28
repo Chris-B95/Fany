@@ -1,0 +1,261 @@
+.container-logoexp {
+    display: flex;
+    width: 100%;
+    flex: 1 1 50%;
+}
+
+.container-colorexp {
+    display: flex;
+    width: 100%;
+    flex: 1 1 50%;
+}
+
+.container-colors {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.color-list-1, .color-list-2, .color-list-3 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.box-color {
+    width: 10rem;
+    height: 5rem;
+    margin: 2rem 1rem;
+    &.color-un {
+        background-color: #d6001d;
+    }
+    &.color-deux {
+        background-color: #c30f16;
+    }
+    &.color-trois {
+        background-color: #c61610;
+    }
+    &.color-quatre {
+        background-color: #ce0d0d;
+    }
+    &.color-cinq {
+        background-color: #bb2528;
+    }
+    &.color-six {
+        background-color: #ea4630;
+    }
+    &.color-sept {
+        background-color: #146b3a;
+    }
+    &.color-huit {
+        background-color: #00873e;
+    }
+    &.color-neuf {
+        background-color: #0ca90c;
+    }
+    &.color-dix {
+        background-color: #165b33;
+    }
+    &.color-onze {
+        background-color: #1e792c;
+    }
+    &.color-douze {
+        background-color: #42692f;
+    }
+    &.color-treize {
+        background-color: #235e6f;
+    }
+    &.color-quatorze {
+        background-color: #535233;
+    }
+    &.color-quinze {
+        background-color: #f0d890;
+    }
+    &.color-seize {
+        background-color: #bca875;
+    }
+    &.color-dixsept {
+        background-color: #e0d2c5;
+    }
+    &.color-dixhuit {
+        background-color: #caa906;
+    }
+}
+
+.explications {
+    width: 50%;
+    text-align: center;
+    font-size: $ftsize-h2;
+    padding: 2rem 2rem 10rem 2rem;
+    border: 0.3rem solid black;
+    position: relative;
+}
+
+.explications2 {
+    width: 50%;
+    text-align: center;
+    font-size: $ftsize-h2;
+    padding: 2rem 2rem 10rem 2rem;
+    border: 0.3rem solid black;
+    position: relative;
+}
+
+.explications3 {
+    width: 100%;
+    text-align: center;
+    font-size: $ftsize-h2;
+    padding: 2rem 2rem 10rem 2rem;
+    margin-bottom: 1rem;
+    border: 0.3rem solid black;
+    position: relative;
+}
+
+.pgsuivante {
+    border: 2px solid black;
+    border-radius: 2rem;
+    position: absolute;
+    right: 6rem;
+    bottom: 2rem;
+    font-size: $ftsize-h1;
+    width: 10rem;
+    height: 5rem;
+    line-height: 5rem;
+    @include basic-shadow;
+
+    &:hover {
+        a {
+            color: white;
+        }
+
+        background-color: black;
+    }
+}
+
+.pgprecedente {
+    border: 2px solid black;
+    border-radius: 2rem;
+    position: absolute;
+    right: 18rem;
+    bottom: 2rem;
+    font-size: $ftsize-h1;
+    width: 10rem;
+    height: 5rem;
+    line-height: 5rem;
+    @include basic-shadow;
+
+    &:hover {
+        a {
+            color: white;
+        }
+
+        background-color: black;
+    }
+}
+
+.logo-list {
+    width: 50%;
+    text-align: center;
+}
+
+.logo-un {
+    @include logo-font;
+    font-size: $ftsize-logo;
+}
+
+.logo-deux {
+    @include logo-font2;
+    font-size: $ftsize-logo;
+    font-weight: bold;
+}
+
+.logo-trois {
+    @include logo-font3;
+    font-size: $ftsize-logo;
+    font-weight: bold;
+}
+
+.logo-quatre {
+    @include logo-font4;
+    font-size: $ftsize-logo;
+}
+
+.logo-cinq {
+    @include logo-font5;
+    font-size: $ftsize-logo;
+}
+
+.logo-six {
+    @include logo-font6;
+    font-size: $ftsize-logo;
+}
+
+.textes-list {
+    text-align: center;
+
+    p {
+        margin: 2rem 0;
+    }
+}
+
+.txt-style1 {
+    @include txt-font;
+}
+
+.txt-style2 {
+    @include txt-font2;
+}
+
+.txt-style3 {
+    @include txt-font3;
+}
+
+.txt-style4 {
+    @include txt-font4;
+}
+
+.txt-style5 {
+    @include txt-font5;
+}
+
+.txt-style6 {
+    @include txt-font6;
+}
+
+.txt-style7 {
+    @include txt-font7;
+}
+
+.txt-style8 {
+    @include txt-font8;
+}
+
+.txt-style9 {
+    @include txt-font9;
+}
+
+.txt-style10 {
+    @include txt-font10;
+}
+
+.foclp {
+    color: #9356dc;
+}
+.foclpl {
+    color: #ff79da;
+}
+.focls {
+    color: #99e2d0;
+}
+
+input {
+    width: 20rem;
+    height: 20rem;
+}
+
+.color-picker {
+    width: 100%;
+    text-align: center;
+    p {
+        margin: 6rem 1rem;
+    }
+}
