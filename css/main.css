@@ -12,8 +12,8 @@ html {
 }
 
 body {
-  background: hsl(0deg, 0%, 100%);
-  color: hsl(0deg, 0%, 0%);
+  background: #e0d2c5;
+  color: #bb2528;
 }
 
 a {
@@ -22,7 +22,7 @@ a {
 }
 
 body {
-  color: hsl(0deg, 0%, 0%);
+  color: #bb2528;
   font-size: 1.6rem;
 }
 
@@ -386,12 +386,12 @@ input {
   z-index: -2;
 }
 .btn-split::before {
-  background-color: #af9483;
+  background-color: #42692f;
   top: -1rem;
   left: 0rem;
 }
 .btn-split::after {
-  background-color: #fec3ac;
+  background-color: #bb2528;
   top: 1rem;
   left: 10rem;
 }
